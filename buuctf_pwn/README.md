@@ -34,6 +34,8 @@
 - mrctf2020_shellcode
 - pwnable_orw
 - syscallexample
+- PicoCTF_2018_shellcode
+- ciscn_2019_s_9
 
 ## 直接返回文本（ret2text）
 - courage
