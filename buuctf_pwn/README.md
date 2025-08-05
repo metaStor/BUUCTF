@@ -16,6 +16,7 @@
 
 ## 防护绕过（bypass_canary）
 - bjdctf_2020_babyrop2
+- others_babystack
 
 ## 堆漏洞（heap）
 - Use_After_Free
@@ -65,3 +66,8 @@
 - gyctf_2020_borrowstack图示.png
 - other_gyctf_2020_borrowstack
 - wustctf2020_getshell2
+
+## 字符串格式化漏洞（fmt）
+- [第五空间2019 决赛]PWN5
+- fm
+- axb_2019_fmt32
