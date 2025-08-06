@@ -37,6 +37,8 @@
 - syscallexample
 - PicoCTF_2018_shellcode
 - ciscn_2019_s_9
+- pwnable_start
+- mrctf2020_shellcode_revenge
 
 ## 直接返回文本（ret2text）
 - courage
