@@ -56,6 +56,7 @@
 - rop_execve
 - simplerop
 - xdctf2015_pwn200
+- jarvisoj_level5
 
 ## SROP 技术（srop）
 - ciscn_s_3
@@ -73,3 +74,4 @@
 - [第五空间2019 决赛]PWN5
 - fm
 - axb_2019_fmt32
+- wdb_2018_2nd_easyfmt
