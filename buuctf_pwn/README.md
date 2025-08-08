@@ -39,6 +39,7 @@
 - ciscn_2019_s_9
 - pwnable_start
 - mrctf2020_shellcode_revenge
+- x_ctf_b0verfl0w
 
 ## 直接返回文本（ret2text）
 - courage
@@ -60,6 +61,7 @@
 
 ## SROP 技术（srop）
 - ciscn_s_3
+- ciscn_2019_es_7
 
 ## 栈迁移（stack pivoting）
 - [Black Watch 入群题]PWN_spwn
@@ -75,3 +77,4 @@
 - fm
 - axb_2019_fmt32
 - wdb_2018_2nd_easyfmt
+- mrctf2020_easy_equation

