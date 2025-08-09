@@ -78,3 +78,4 @@
 - axb_2019_fmt32
 - wdb_2018_2nd_easyfmt
 - mrctf2020_easy_equation
+- inndy_echo
