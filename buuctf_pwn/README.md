@@ -71,6 +71,7 @@
 - gyctf_2020_borrowstack图示.png
 - other_gyctf_2020_borrowstack
 - wustctf2020_getshell2
+- actf_2019_babystack
 
 ## 字符串格式化漏洞（fmt）
 - [第五空间2019 决赛]PWN5
@@ -79,3 +80,4 @@
 - wdb_2018_2nd_easyfmt
 - mrctf2020_easy_equation
 - inndy_echo
+- axb_2019_fmt64
