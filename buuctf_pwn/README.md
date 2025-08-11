@@ -33,13 +33,14 @@
 ## Shellcode 利用（ret2shellcode）
 - ez_pz_hackover_2016
 - mrctf2020_shellcode
-- pwnable_orw
+- pwnable_orw (orw)
 - syscallexample
 - PicoCTF_2018_shellcode
 - ciscn_2019_s_9
 - pwnable_start
 - mrctf2020_shellcode_revenge
 - x_ctf_b0verfl0w
+- [极客大挑战 2019]Not Bad (orw)
 
 ## 直接返回文本（ret2text）
 - courage
