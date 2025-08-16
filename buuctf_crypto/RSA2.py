@@ -10,7 +10,7 @@
 ④ phi(n) = (p-1)*(q-1)
 
 二、推导:
-由 dp = d mod (p-1)
+由 dp ≡ d mod (p-1)
 ==> dp * e = e * d mod (p-1)
 ==> e * d = dp * e + k1(p-1) ，k1 ∈ Z（正整数） ⑤ 【 比如， 7%5=2 可推导为 7=5*k1+2】
 由 ③ e * d = 1 mod phi(n)
