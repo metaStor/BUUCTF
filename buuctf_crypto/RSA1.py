@@ -1,6 +1,7 @@
 '''
 这道题并没有直接给公钥，但是泄露了dp和dq，应该是让我们根据这些条件求出明文m
-
+dp 的定义是：d 对 p-1 取模的结果，即 dp=d mod (p−1), 根据同余定义，这等价于：dp ≡ p (mod p−1)
+     ↓
 dp=d mod(p-1)
 dq=d mod(q-1)
      ↓
@@ -10,6 +11,51 @@ mq = C^dq mod q
 m = (((mq - mp)*p^-1 mod q) * p + mp) mod n
 
 公示推导：https://blog.csdn.net/MikeCoke/article/details/105959599
+=========================================================================================
+一、需要条件:
+dp 的定义是：d 对 p-1 取模的结果，即 dp=d mod (p−1), 根据同余定义，这等价于：dp ≡ p (mod p−1)
+① dp = d mod(p-1)
+② dq = d mod(q-1)
+
+二、推导过程:
+由  m = c^d mod n + 同余定理得:
+==> m = k*n + c^d  且有 n = p*q
+==> m = k*p*q + c^d
+对两边同时对 p 取余:
+==> m mod p = k*p*q mod p + c^d mod p
+    先看加号左边的，因为 k*p*q 包含了因数 p，所以必有 k*p*q mod p = 0
+    在看加号右边的:
+    1、由费马小定理可知:
+       若 p 是素数，且 c 与 p 互质，且 p 是素数，则有: c^(p-1) ≡ 1 (mod p)
+    2、用 “整数除法” 拆分指数 d
+       对于任意大的指数 d，我们可以用整数除法把它拆成：d = k * (p-1) + r
+       根据定义，余数 r 就是 d 对 (p-1) 取模的结果，即：r = d mod (p-1)
+    3、代入指数，利用费马小定理简化
+       c^d = c^(k * (p-1) + r) ==> c^d = c^(p-1)^k * c^r
+    4、应用费马小定理，压缩指数
+       c^(p-1) ≡ 1 (mod p) ==> c^(p-1)^k ≡ 1^k (mod p)
+       结合步骤3得: ==> c^d = c^(p-1)^k * c^r ≡ 1^k * c^r ≡ c^r (mod p)
+    5、替换余数 r
+       因为 r = d mod (p-1)，所以上式等价于：c^d ≡ c^(d mod (p-1)) (mod p)
+       结合条件 ① dp = d mod(p-1) 得: ===> c^d mod p ≡ c^dp (mod p) ====> 加号右边推导完毕。
+==>  m mod p = c^dp mod p, 记 m mod p 为 mp
+==> mp = c^dp mod p  ③
+对两边同时对 p 取余同理可得:
+==> mq = c^dq mod q  ④
+③由同余定理得:
+==> c^dp = k*p + mp  ⑤
+⑤ 代入 ④ 得:
+==> mq = (k*p + mp) mod q
+两边同时减去 mp:
+==> mq - mp = k*p mod q
+由于 gcd(p,q)=1, 可求 p的逆元 p^-1: p_1 = gmpy2.invert(p, q)
+==> (mq - mp) * p_1 = k mod q
+==> k ≡ (mq - mp) * p_1 mod q   ⑥
+⑥ 代入 ⑤ 得:
+==> c^d = ((mq - mp) * p_1 mod q) * p + mp  ⑦
+⑦ 代入解密公示 m = c^d mod n:
+==> m = (((mq - mp) * p_1 mod q) * p + mp) mod n  ★
+==> 推导完毕。
 '''
 import gmpy2
 
