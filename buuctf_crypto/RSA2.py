@@ -1,5 +1,30 @@
 '''
 公式推导：https://blog.csdn.net/MikeCoke/article/details/106095234
+
+已知e、n、dp、密文c，求明文m。
+首先要求d => d = gmpy2.invert(e, phi_n)
+一、需要条件:
+① dp = d mod (p-1)
+② m = c^d mod n
+③ e * d = 1 mod phi(n)
+④ phi(n) = (p-1)*(q-1)
+
+二、推导:
+由 dp = d mod (p-1)
+==> dp * e = e * d mod (p-1)
+==> e * d = dp * e + k1(p-1) ，k1 ∈ Z（正整数） ⑤ 【 比如， 7%5=2 可推导为 7=5*k1+2】
+由 ③ e * d = 1 mod phi(n)
+==> e * d = 1 mod (p-1)(q-1)
+==> e * d = 1 + k2(p-1)(q-1) , k2 ∈ 整数 ⑥ 【 比如， 7%5=2 可推导为 2=5*k2+7，（k2=-1）】
+由 ⑤⑥ 得：
+==> dp * e + k1(p-1) = 1 + k2(p-1)(q-1)
+==> dp * e = 1 + (p-1)(k2(q-1)-k1), k1 ∈ Z（正整数）, k2 ∈ 整数
+令 x = (k2(q-1)-k1), 得:
+==> dp * e = 1 + (p-1) * x  ⑦
+由 ① 可知: dp < (p-1), 且由 ⑦ 可得 e 与 x 的大小关系:
+==> e >= x
+==> x ∈ (1, e]  ⑧
+由 ⑧ 可通过遍历出 x，使得满足 ⑦，由于dp、e已知，可通过 x 求出 (p-1)，且 n 已知，可求出 q, p和q求出phi，phi求出d即可。
 '''
 
 import gmpy2
