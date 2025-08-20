@@ -14,6 +14,7 @@
 
 ### 已知p、q、e、密文c，求明文m
 - rsarsa
+- [HDCTF2019]basic rsa
 
 ### 已知q、p、dq、dp、密文c，求明文m
 - RSA1
@@ -29,3 +30,6 @@
 
 ### 分解n
 - RsaRoll
+
+### 低加密指数攻击
+- Dangerous RSA
