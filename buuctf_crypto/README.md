@@ -16,6 +16,9 @@
 - rsarsa
 - [HDCTF2019]basic rsa
 
+### 已知(p + q)、(p + 1)*(q + 1)、e、d、c，求明文m
+- BadyRsa
+
 ### 已知q、p、dq、dp、密文c，求明文m
 - RSA1
 
@@ -30,6 +33,13 @@
 
 ### 分解n
 - RsaRoll
+- childRSA
 
 ### 低加密指数攻击
 - Dangerous RSA
+
+### wiener攻击 (低解密指数攻击)
+- rsa2_1
+
+### 低加密指数广播攻击
+- RSA5
