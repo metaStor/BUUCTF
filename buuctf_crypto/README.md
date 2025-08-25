@@ -37,9 +37,8 @@
 
 ### 低加密指数攻击
 - Dangerous RSA
+- RSA5
+- RSA4
 
 ### wiener攻击 (低解密指数攻击)
 - rsa2_1
-
-### 低加密指数广播攻击
-- RSA5
