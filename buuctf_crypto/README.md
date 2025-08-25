@@ -41,6 +41,7 @@
 - [WUSTCTF2020]babyrsa
 - [ACTF新生赛2020]crypto-rsa3
 - [GWCTF 2019]BabyRSA
+- [BJDCTF2020]easyrsa
 
 ### 低加密指数攻击
 - Dangerous RSA
