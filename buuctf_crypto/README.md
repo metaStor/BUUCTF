@@ -38,6 +38,7 @@
 ### 分解n
 - RsaRoll
 - childRSA
+- [WUSTCTF2020]babyrsa
 
 ### 低加密指数攻击
 - Dangerous RSA
