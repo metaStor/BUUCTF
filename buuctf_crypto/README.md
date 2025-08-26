@@ -57,3 +57,6 @@
 
 ### wilson定理 (威尔逊定理)
 - [RoarCTF2019]babyRSA
+
+### 爆破e
+- [RoarCTF2019]RSA
