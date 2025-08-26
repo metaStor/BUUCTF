@@ -54,3 +54,6 @@
 
 ### wiener攻击 (低解密指数攻击)
 - rsa2_1
+
+### wilson定理 (威尔逊定理)
+- [RoarCTF2019]babyRSA
