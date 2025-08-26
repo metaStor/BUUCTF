@@ -16,6 +16,9 @@
 - rsarsa
 - [HDCTF2019]basic rsa
 
+### 已知d、c、e，求明文m
+- [NCTF2019]babyRSA
+
 ### 已知(p + q)、(p + 1)*(q + 1)、e、d、c，求明文m
 - BadyRsa
 
