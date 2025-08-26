@@ -37,6 +37,7 @@
 
 ### 公钥加签
 - RSA公钥加签
+- [AFCTF2018]可怜的RSA
 
 ### 分解n
 - RsaRoll
