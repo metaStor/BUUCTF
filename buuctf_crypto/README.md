@@ -27,6 +27,7 @@
 
 ### 已知e、n、dp、密文c，求明文m
 - RSA2
+- [WUSTCTF2020]dp_leaking
 
 ### 共模攻击
 - RSA3
