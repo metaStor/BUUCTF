@@ -47,6 +47,7 @@
 - [ACTF新生赛2020]crypto-rsa3
 - [GWCTF 2019]BabyRSA
 - [BJDCTF2020]easyrsa
+- [NPUCTF2020]EzRSA (利用最小公倍数求解)
 
 ### 低加密指数攻击
 - Dangerous RSA
