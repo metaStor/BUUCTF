@@ -49,6 +49,7 @@
 - [GWCTF 2019]BabyRSA
 - [BJDCTF2020]easyrsa
 - [NPUCTF2020]EzRSA (利用最小公倍数求解)
+- [INSHack2019]Yet Another RSA Challenge-Part1
 
 ### 低加密指数攻击
 - Dangerous RSA
