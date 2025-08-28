@@ -126,6 +126,16 @@ print(gmpy2.gcd(e1, (p-1) * (q1-1)))  # e1与phi有最大公约数14, 不互质
 print(gmpy2.gcd(e2, (p-1) * (q2-1)))  # e2与phi有最大公约数14, 不互质
 # 为了尽量不要使得gcd(e,phi)=e（因为这样会非常难求）,所以我们可以选择q1作为模数，即将上面的式子拆分，得到如下结果:
 '''
+原式为：
+c1 = flag1^e1 mod p*q1
+c2 = flag2^e2 mod p*q2
+由于e1、e2都与phi有最大公约数14, 不互质无法解出d；以e1为例，将上面的式子拆分：
+e1 * d1 = 1 mod p*q1  ===>  e1*(1/14) * d1*(14) = 1 mod p*q1
+令e=e1*(1/14), d=d1*(14), 则有:
+e * d = 1 mod p*q1, 从而可以求出d
+又有:
+m1 = c1^d1 mod p*q1  ===>  m1^14 = c1^(14*d1) mod p*q1 = c1^d mod p*q1
+这样就可以求出 m1^14, 同理通过e2可以求出 m2^14
 令通过e1解出的m1^14为cc1,通过e2解出的m2^14为cc2，则有
 cc1 = m1^14 mod p*q1
 cc2 = m2^14 mod p*q2
@@ -148,8 +158,8 @@ cc3 = M^7 mod q1*q2
 e3 = gmpy2.gcd(e1, (p-1) * (q1-1))  # 14
 e1 //= e3
 e2 //= e3
-d1 = gmpy2.invert(e1, (p-1) * (q1-1))
-d2 = gmpy2.invert(e2, (p-1) * (q2-1))
+d1 = gmpy2.invert(e1, (p-1) * (q1-1))  # e1*(1/14) * d1*(14) = 1 mod p*q1
+d2 = gmpy2.invert(e2, (p-1) * (q2-1))  # e2*(1/14) * d2*(14) = 1 mod p*q2
 # cc1 cc2
 cc1 = gmpy2.powmod(c1, d1, p*q1)  # cc1 = m1^14 mod p*q1
 cc2 = gmpy2.powmod(c2, d2, p*q2)  # cc2 = m2^14 mod p*q2
