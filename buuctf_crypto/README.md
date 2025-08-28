@@ -71,3 +71,6 @@
 
 ### 爆破e
 - [RoarCTF2019]RSA
+
+### RSA综合题
+- [De1CTF2019]babyrsa
