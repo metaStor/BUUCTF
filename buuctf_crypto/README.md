@@ -50,12 +50,18 @@
 - [BJDCTF2020]easyrsa
 - [NPUCTF2020]EzRSA (利用最小公倍数求解)
 - [INSHack2019]Yet Another RSA Challenge-Part1
+- [De1CTF2019]babyrsa
 
 ### 低加密指数攻击
 - Dangerous RSA
 - RSA5
 - RSA4
 - [INSHack2017]rsa16m
+- [De1CTF2019]babyrsa
+
+### CRT（中国剩余定理）
+- RSA4
+- [De1CTF2019]babyrsa
 
 ### wiener攻击 (低解密指数攻击)
 - rsa2_1
