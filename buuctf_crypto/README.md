@@ -29,6 +29,9 @@
 - RSA2
 - [WUSTCTF2020]dp_leaking
 
+### 已知m、p、q、密文c，求e (离散对数求解)
+- [NPUCTF2020]认清形势,建立信心
+
 ### 共模攻击
 - RSA3
 - rsa_output
