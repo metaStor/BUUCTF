@@ -85,3 +85,4 @@
 - mrctf2020_easy_equation
 - inndy_echo
 - axb_2019_fmt64
+- fmt
