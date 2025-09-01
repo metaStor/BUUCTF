@@ -29,10 +29,18 @@
 - RSA2
 - [WUSTCTF2020]dp_leaking
 
+### 已知m、p、q、密文c，求e (离散对数求解)
+- [NPUCTF2020]认清形势,建立信心
+
+### nthroot_mod 求解n为质数时的二次剩余问题
+
+- [NPUCTF2020]共模攻击
+
 ### 共模攻击
 - RSA3
 - rsa_output
 - RSA & what (base64隐写)
+- [NPUCTF2020]共模攻击
 
 ### 模不互素
 - [BJDCTF2020]RSA
@@ -69,5 +77,12 @@
 ### wilson定理 (威尔逊定理)
 - [RoarCTF2019]babyRSA
 
+### Coppersmith定理
+
+- [NPUCTF2020]共模攻击
+
 ### 爆破e
 - [RoarCTF2019]RSA
+
+### RSA综合题
+- [De1CTF2019]babyrsa

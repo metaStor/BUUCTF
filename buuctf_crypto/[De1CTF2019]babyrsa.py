@@ -122,17 +122,28 @@ c2 = 739559112922887664903081961668582189920483268499575772492445081297747078782
 # print(long_to_bytes(m1))
 # print(long_to_bytes(m2))
 
-# print(gmpy2.gcd(e1, (p-1) * (q1-1)))  # e1与phi有最大公约数14, 不互质
-# print(gmpy2.gcd(e2, (p-1) * (q2-1)))  # e2与phi有最大公约数14, 不互质
-e3 = gmpy2.gcd(e1, (p-1) * (q1-1))  # 14
-e1 //= e3
-e2 //= e3
-d1 = gmpy2.gcd(e1, (p-1) * (q1-1))
-d2 = gmpy2.gcd(e2, (p-1) * (q2-1))
+print(gmpy2.gcd(e1, (p-1) * (q1-1)))  # e1与phi有最大公约数14, 不互质
+print(gmpy2.gcd(e2, (p-1) * (q2-1)))  # e2与phi有最大公约数14, 不互质
 # 为了尽量不要使得gcd(e,phi)=e（因为这样会非常难求）,所以我们可以选择q1作为模数，即将上面的式子拆分，得到如下结果:
 '''
+原式为：
+c1 = flag1^e1 mod p*q1
+c2 = flag2^e2 mod p*q2
+由于e1、e2都与phi有最大公约数14, 不互质无法解出d；以e1为例，将上面的式子拆分：
+e1 * d1 = 1 mod p*q1  ===>  e1*(1/14) * d1*(14) = 1 mod p*q1
+令e=e1*(1/14), d=d1*(14), 则有:
+e * d = 1 mod p*q1, 从而可以求出d
+又有:
+m1 = c1^d1 mod p*q1  ===>  m1^14 = c1^(14*d1) mod p*q1 = c1^d mod p*q1
+这样就可以求出 m1^14, 同理通过e2可以求出 m2^14
+令通过e1解出的m1^14为cc1,通过e2解出的m2^14为cc2，则有
 cc1 = m1^14 mod p*q1
 cc2 = m2^14 mod p*q2
+拆分即：
+cc1 = m1^14 mod p
+cc1 = m1^14 mod q1
+cc2 = m2^14 mod p
+cc2 = m2^14 mod q2
 舍弃掉模数为p的式子:
 cc1 = m1^14 mod q1
 cc2 = m2^14 mod q2
@@ -142,23 +153,26 @@ cc2 = M2^7 mod q2
 此时，7与phi的最大公约数就是1了，互质。gcd(7,(q1-1))=1、gcd(7,(q2-1))=1 
 再利用中国剩余定理求出cc3, 使得:
 cc3 = M^7 mod q1*q2
-求出M之后，再开方即可求出m
+这样的话，e=7 , n = q1*q2 ,c = cc3，很容易就求出M，求出M之后，再开方即可求出m
 '''
+e3 = gmpy2.gcd(e1, (p-1) * (q1-1))  # 14
+e1 //= e3
+e2 //= e3
+d1 = gmpy2.invert(e1, (p-1) * (q1-1))  # e1*(1/14) * d1*(14) = 1 mod p*q1
+d2 = gmpy2.invert(e2, (p-1) * (q2-1))  # e2*(1/14) * d2*(14) = 1 mod p*q2
 # cc1 cc2
-cc1 = gmpy2.powmod(c1, d1, p*q1)
-cc2 = gmpy2.powmod(c2, d2, p*q2)
+cc1 = gmpy2.powmod(c1, d1, p*q1)  # cc1 = m1^14 mod p*q1
+cc2 = gmpy2.powmod(c2, d2, p*q2)  # cc2 = m2^14 mod p*q2
 # print(gmpy2.gcd(14, (p-1)))  # gcd(14,(p-1))=14, 不互质
 # print(gmpy2.gcd(14, (q1-1)))  # gcd(14,(q1-1))=2, 不互质
 # print(gmpy2.gcd(14, (q2-1)))  # gcd(14,(q2-1))=2, 不互质
 
 # print(gmpy2.gcd(7, (q1-1)))  # 1, 互质
 # print(gmpy2.gcd(7, (q2-1)))  # 1, 互质
-# cc1 = gmpy2.powmod(cc1, dd1, q1)
-# cc2 = gmpy2.powmod(cc2, dd2, q2)
 cc3 = CRT([q1, q2], [cc1, cc2])
 d = gmpy2.invert(e3//2, (q1 - 1) * (q2 - 1))
 m = gmpy2.powmod(cc3, d, q1 * q2)
-flag = gmpy2.iroot(cc3, 2)[0]
+flag = gmpy2.iroot(m, 2)[0]
 print(long_to_bytes(flag))
 
 
