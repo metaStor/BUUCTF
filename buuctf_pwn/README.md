@@ -76,7 +76,7 @@
 - other_gyctf_2020_borrowstack
 - wustctf2020_getshell2
 - actf_2019_babystack
-- Leave
+- leave
 
 ## 字符串格式化漏洞（fmt）
 - [第五空间2019 决赛]PWN5
