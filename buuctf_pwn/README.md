@@ -68,15 +68,16 @@
 - ciscn_2019_es_7
 
 ## 栈迁移（stack pivoting）
-- [Black Watch 入群题]PWN_spwn (迁移到bss+有两个读入函数的栈迁移)
-- ciscn_2019_es_2 (泄露buf地址+在原来的栈上进行栈迁移)
-- ciscn_s_4 (同ciscn_2019_es_2)
-- gyctf_2020_borrowstack (迁移到bss+有两个读入函数的栈迁移)
-- gyctf_2020_borrowstack图示.png
+#### 迁移到bss+有两个读入函数的栈迁移
+- [Black Watch 入群题]PWN_spwn
+- gyctf_2020_borrowstack
 - other_gyctf_2020_borrowstack
-- wustctf2020_getshell2
-- actf_2019_babystack (泄露buf地址+在原来的栈上进行栈迁移)
-- leave (迁移到bss+只有一个读入函数的栈迁移)
+#### 泄露buf地址+在原来的栈上进行栈迁移
+- ciscn_2019_es_2
+- ciscn_s_4 (同ciscn_2019_es_2)
+- actf_2019_babystack
+#### 迁移到bss+只有一个读入函数的栈迁移
+- leave
 
 ## 字符串格式化漏洞（fmt）
 - [第五空间2019 决赛]PWN5
