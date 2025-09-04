@@ -78,6 +78,7 @@
 - actf_2019_babystack
 #### 迁移到bss+只有一个读入函数的栈迁移
 - leave
+- NCTF2021_login
 
 ## 字符串格式化漏洞（fmt）
 - [第五空间2019 决赛]PWN5
