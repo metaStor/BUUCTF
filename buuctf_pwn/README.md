@@ -89,3 +89,4 @@
 - inndy_echo
 - axb_2019_fmt64
 - fmt
+- [DASCTF_X_HDCTF_2024_公开赛_生而无畏战]签个到吧 (x86_64)
